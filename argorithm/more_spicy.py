@@ -1,15 +1,9 @@
 def solution(scoville, K):
     answer = 0
-    scoville.sort()
-    smallest_num = scoville[0]
-    while smallest_num < K:
-        first = scoville.pop(0)
-        second = scoville.pop(0)
-        mixed_scovile_num = first + (second*2)
+    while min(scoville) < K:
         answer += 1
-        scoville.append(mixed_scovile_num)
+        scoville.append(scoville.pop(0) + (scoville.pop(0)*2))
         scoville.sort()
-        smallest_num = scoville[0]
     return answer
 
 
