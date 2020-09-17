@@ -1,9 +1,10 @@
 def solution(priorities, location):
     answer = 0
-    value = priorities[location]
-    for i in range(len(priorities)):
-        if value <= priorities.pop(0):
-            answer += 1
+    while(len(priorities)!=0):
+        if priorities[0] < max(priorities[1:]):
+            priorities.append(priorities.pop(0))
+        else:
+
     return answer
 
 
