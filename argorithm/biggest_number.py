@@ -6,3 +6,4 @@ def solution(numbers):
 if __name__ == '__main__':
     real_answer = solution([6, 10, 2])
     print(real_answer)
+
