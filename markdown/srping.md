@@ -251,11 +251,16 @@ Mybatis를 이용할 때는, mapper.xml에 쿼리문을 작성하고 이를 mapp
 
 #### [#](https://gyoogle.dev/blog/interview/웹.html#spring-jdbc란)Spring JDBC란?
 
-데이터베이스 테이블과, 자바 객체 사이의 단순한 매핑을 간단한 설정을 통해 처리하는 것
+- 기존의 JDBC장점과 단순성을 그대로 유지하면서도 단점을 극복할 수 있게 해준다.
+- 내부적으로 반복적인 작업들을 대신 해줌
+- Connection과 관련된 모든 작업을 알아서 진행(커넥션 열고 닫기)
+- Spring JDBC를 사용하려면 먼저, DB커넥션을 가져오는 DataSource를 Bean으로 등록해야 한다.
 
-기존의 JDBC에서는 구현하고 싶은 로직마다 필요한 SQL문이 모두 달랐고, 이에 필요한 Connection, PrepareStatement, ResultSet 등을 생성하고 Exception 처리도 모두 해야하는 번거러움이 존재했습니다.
+- 데이터베이스 테이블과, 자바 객체 사이의 단순한 매핑을 간단한 설정을 통해 처리하는 것
 
-Spring에서는 JDBC와 ORM 프레임워크를 직접 지원하기 때문에 따로 작성하지 않아도 모두 다 처리해주는 장점이 있습니다.
+- 기존의 JDBC에서는 구현하고 싶은 로직마다 필요한 SQL문이 모두 달랐고, 이에 필요한 Connection, PrepareStatement, ResultSet 등을 생성하고 Exception 처리도 모두 해야하는 번거러움이 존재했습니다.
+
+- Spring에서는 JDBC와 ORM 프레임워크를 직접 지원하기 때문에 따로 작성하지 않아도 모두 다 처리해주는 장점이 있습니다.
 
 
 
@@ -263,8 +268,36 @@ Spring에서는 JDBC와 ORM 프레임워크를 직접 지원하기 때문에 따
 
 #### [#](https://gyoogle.dev/blog/interview/웹.html#mybatis란)MyBatis란?
 
-객체, 데이터베이스, Mapper 자체를 독립적으로 작성하고, DTO에 해당하는 부분과 SQL 실행결과를 매핑해서 사용할 수 있도록 지원함
+- 자바 오프젝트와 SQL문 사이의 자동 Mapping 기능을 지원하는 ORM프레임워크
 
-기존에는 DAO에 모두 SQL문이 자바 소스상에 위치했으나, MyBatis를 통해 SQL은 XML 설정 파일로 관리합니다.
+- 복잡한 JDBC코드를 걷어내 깔끔한 소스코드를 유지할 수 있다.
 
-설정파일로 분리하면, 수정할 때 설정파일만 건드리면 되므로 유지보수에 매우 좋습니다. 또한 매개변수나 리턴 타입으로 매핑되는 모든 DTO에 관련된 부분도 모두 설정파일에서 작업할 수 있는 장점이 있습니다.
+- SQL을 XML파일로 관리
+
+- java소스에서 XML태그의 id만 호출
+
+- sqlSession을 통해 mapper를 불러서 사용한다.
+
+- ![](https://t1.daumcdn.net/cfile/tistory/9994DE355C7222C802?download)
+
+- 	@Repository
+  	public class FundingAnswerDAOImpl implements FundingAnswerDAO {
+  		@Autowired
+  		private SqlSession session;
+  	
+  		@Override
+  		public int contentInsert(FundingAnswer fundingAnswer) {
+  			return session.insert("fundingAnswerMapper.contentInsert", fundingAnswer);
+  		}
+  	
+
+- 설정파일로 분리하면, 수정할 때 설정파일만 건드리면 되므로 유지보수에 매우 좋습니다.
+
+- 매개변수나 리턴 타입으로 매핑되는 모든 DTO에 관련된 부분도 모두 설정파일에서 작업할 수 있는 장점이 있습니다.
+
+- fundingmapper.xml(Sql구문이 있는 파일)![](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201011161756466.png)
+
+- fundingDAOImpl.java![](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201011161838531.png)
+
+- mybatis-context.xml(mybatis설정관련 파일)![](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201011162050397.png)
+
