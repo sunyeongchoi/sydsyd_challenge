@@ -281,15 +281,15 @@ Mybatis를 이용할 때는, mapper.xml에 쿼리문을 작성하고 이를 mapp
 - ![](https://t1.daumcdn.net/cfile/tistory/9994DE355C7222C802?download)
 
 - 	@Repository
-  	public class FundingAnswerDAOImpl implements FundingAnswerDAO {
-  		@Autowired
-  		private SqlSession session;
-  	
-  		@Override
-  		public int contentInsert(FundingAnswer fundingAnswer) {
-  			return session.insert("fundingAnswerMapper.contentInsert", fundingAnswer);
-  		}
-  	
+    	public class FundingAnswerDAOImpl implements FundingAnswerDAO {
+    		@Autowired
+    		private SqlSession session;
+    	
+    		@Override
+    		public int contentInsert(FundingAnswer fundingAnswer) {
+    			return session.insert("fundingAnswerMapper.contentInsert", fundingAnswer);
+    		}
+
 
 - 설정파일로 분리하면, 수정할 때 설정파일만 건드리면 되므로 유지보수에 매우 좋습니다.
 
