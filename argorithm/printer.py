@@ -4,6 +4,7 @@ def solution(priorities, location):
         if priorities[0] < max(priorities[1:]):
             priorities.append(priorities.pop(0))
         else:
+            pass
 
     return answer
 
