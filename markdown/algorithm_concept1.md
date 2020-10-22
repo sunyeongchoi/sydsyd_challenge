@@ -3,7 +3,7 @@
 - 서로 인접한 두 원소를 검사하여 정렬하는 알고리즘
   - 인접한 2개의 레코드를 비교하여 크기가 순서대로 되어있지 않으면 서로 교환한다.
 
-
+으아아
 
 ![img](https://blog.kakaocdn.net/dn/dju5Ov/btqLkLyfqTN/4fMu50jwoWs3lm5skeRSVk/img.png)
 
