@@ -43,9 +43,3 @@ for i in range(n):
             bfs(i, j)
             cnt += 1
 print(cnt)
-
-
-
-
-
-
