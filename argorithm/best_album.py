@@ -1,34 +1,22 @@
 from collections import defaultdict
-from operator import itemgetter
 
 
 def solution(genres, plays):
+    answer = []
+    # 장르별 재생횟수 합계 구한 뒤 내림차순 정렬
     genre_play_dict = defaultdict(lambda: 0)
-    print(genre_play_dict)
     for genre, play in zip(genres, plays):
         genre_play_dict[genre] += play
-    print(genre_play_dict)
+    sorted_genre_play_dict = sorted(genre_play_dict.items(), key=lambda x: x[1], reverse=True)
 
-    genre_rank = [genre for genre, play in sorted(genre_play_dict.items(), key=itemgetter(1), reverse=True)]
-    print(genre_rank)
+    # 장르별 재생횟수 내림차순
+    genre_play_list_dict = defaultdict(lambda: [])
+    for index, genre_play_tuple in enumerate(zip(genres, plays)):
+        genre_play_list_dict[genre_play_tuple[0]].append((index, genre_play_tuple[1]))
 
-    final_dict = defaultdict(lambda: [])
-    print(final_dict)
-    for i, genre_play_tuple in enumerate(zip(genres, plays)):
-        final_dict[genre_play_tuple[0]].append((genre_play_tuple[1], i))
-    print(final_dict)
-
-    answer = []
-    for genre in genre_rank:
-        one_genre_list = sorted(final_dict[genre], key=itemgetter(0), reverse=True)
-        print(one_genre_list)
-        if len(one_genre_list) > 1:
-            answer.append(one_genre_list[0][1])
-            answer.append(one_genre_list[1][1])
-        else:
-            answer.append(one_genre_list[0][1])
-
-    return answer
+    for genre in sorted_genre_play_dict:
+        answer += (sorted(genre_play_list_dict[genre[0]], key=lambda x: x[1], reverse=True)[:2])
+    return [x[0] for x in answer]
 
 
 if __name__ == '__main__':
