@@ -1,24 +1,23 @@
 import sys
-from itertools import permutations
 input = sys.stdin.readline
 
 N = int(input())
 words = [list(input().rstrip()) for _ in range(N)]
-all_words_duplicate = set(sum(words, []))
-num = [i for i in range(10)]
 
-# # 순열
-# perm = set(permutations(num, len(all_words_duplicate)))
+word_dict = {}
 
-for p in set(permutations(num, len(all_words_duplicate))):
-    # print(list(zip(all_words_duplicate, p)))
-    # print(p)
-    for key, value in list(zip(all_words_duplicate, p)):
-        print(key, value)
-        for word in words:
-            pass
-# 숫자 이어 붙힘
+for word in words:
+    k = len(word)-1
+    for w in word:
+        if w in word_dict:
+            word_dict[w] += 10 ** k
+        else:
+            word_dict[w] = 10 ** k
+        k -= 1
 
-# 계산해
-
-# 최댓값
+sorted_word = sorted(word_dict.values(), reverse=True)
+answer, num = 0, 9
+for sw in sorted_word:
+    answer += sw * num
+    num -= 1
+print(answer)
