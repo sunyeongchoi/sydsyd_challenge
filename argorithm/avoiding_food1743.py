@@ -4,7 +4,6 @@ input = sys.stdin.readline
 
 def bfs(x, y):
     q = deque()
-    cnt = 1
     q.append((x, y))
     cnt = set()
     while q:
