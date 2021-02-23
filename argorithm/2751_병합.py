@@ -4,22 +4,38 @@ input = sys.stdin.readline
 N = int(input())
 arr = [int(input()) for _ in range(N)]
 
-def mergeSort(x):
-    if len(x) > 1:
-        mid = len(x)//2
-        lx, rx = x[:mid], x[mid:]
-        mergeSort(lx)
-        mergeSort(rx)
+def mergeSort(array):
+    if len(array) <= 1:
+        return array
+    mid = len(array)//2
+    left = mergeSort(array[:mid])
+    print('left : ', left)
+    right = mergeSort(array[mid:])
+    print('right : ', right)
 
-        li, ri, i = 0, 0, 0
-        while li < len(lx) and ri < len(rx):
-            if lx[li] < rx[ri]:
-                x[i] = lx[li]
-                li += 1
-            else:
-                x[i] = rx[ri]
-                ri += 1
-            i += 1
-        x[i:] = lx[li:] if li != len(lx) else rx[ri:]
-    print(x)
-mergeSort(arr)
+    i, j, k = 0, 0, 0
+
+    while i<len(left) and j<len(right):
+        if left[i] < right[j]:
+            array[k] = left[i]
+            i+=1
+        else:
+            array[k] = right[j]
+            j+=1
+        k+=1
+    
+    if i==len(left):
+        while j<len(right):
+            array[k] = right[j]
+            j+=1
+            k+=1
+    elif j==len(right):
+        while i<len(left):
+            array[k] = left[i]
+            i+=1
+            k+=1
+    return array
+
+answer = mergeSort(arr)
+for i in answer:
+    print(i)
