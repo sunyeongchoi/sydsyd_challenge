@@ -1,15 +1,9 @@
-import sys
-input = sys.stdin.readline
-
-N = int(input())
-arr = [int(input()) for _ in range(N)]
-
-def mergeSort(array):
-    if len(array) <= 1:
+def merge_sort(array):
+    if len(array)<=1:
         return array
     mid = len(array)//2
-    left = mergeSort(array[:mid])
-    right = mergeSort(array[mid:])
+    left = merge_sort(array[:mid])
+    right = merge_sort(array[mid:])
 
     i, j, k = 0, 0, 0
 
@@ -24,16 +18,12 @@ def mergeSort(array):
     
     if i==len(left):
         while j<len(right):
-            array[k] = right[j]
+            array[k]=right[j]
             j+=1
             k+=1
     elif j==len(right):
         while i<len(left):
-            array[k] = left[i]
+            array[k]=left[i]
             i+=1
-            k+=1
+            k+=1 
     return array
-
-answer = mergeSort(arr)
-for i in answer:
-    print(i)

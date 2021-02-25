@@ -5,7 +5,6 @@ def solution(priorities, location):
             priorities.append(priorities.pop(0))
         else:
             pass
-
     return answer
 
 
