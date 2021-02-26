@@ -1,7 +1,6 @@
 def solution(s1, s2):
     answer = set()
     min_val = min(len(s1), len(s2))
-    result1, result2 = '', ''
     for i in range(min_val):
         if s1[-i:] == s2[:i]:
             answer.add(s1+s2[i:])

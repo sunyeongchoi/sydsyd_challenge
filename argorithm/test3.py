@@ -9,7 +9,9 @@ def solution(grade):
     if namogi!=0:
         # 3으로 나누어 떨어지는지 확인
         if namogi%3==0:
-
+            return namogi//3 + moc
+        else:
+            
     # 3로 나눌 경우
     grade//3
 
