@@ -11,15 +11,15 @@ def bfs(n):
         count = cnt
         if not visited[val]:
             visited[val]=1
-        if val == k:
-            return count
-        count += 1
-        if val-1 >= 0:
-            queue.append((val-1, count))
-        if val+1 <= 100000:
-            queue.append((val+1, count))
-        if val*2 <= 100000:
-            queue.append((val*2, count))
+            if val == k:
+                return count
+            count += 1
+            if val-1 >= 0:
+                queue.append((val-1, count))
+            if val+1 <= 100000:
+                queue.append((val+1, count))
+            if val*2 <= 100000:
+                queue.append((val*2, count))
     return count
 
 n, k = map(int, input().split())
