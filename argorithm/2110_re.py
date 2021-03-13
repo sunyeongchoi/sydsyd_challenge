@@ -4,7 +4,7 @@ n, c = map(int, input().split())
 arr = [int(input()) for _ in range(n)]
 arr.sort()
 
-start = arr[1]-arr[0]
+start = 1
 end = arr[-1]-arr[0]
 result = 0
 
