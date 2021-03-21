@@ -71,20 +71,21 @@ def flag_rule_manufactor(flag_rules):
     for fr in flag_rules:
         temp = []
         val = fr.split()
+        print('val : ', val)
         if 'ALIAS' in val:
             temp.append(val[0])
             temp.append(val[2])
         else:
             flag_name, flag_argument_type = val
             flag_rule_dict[flag_name]=flag_argument_type
+        print('temp : ', temp)
         if temp:
-            global value
-            value = ''
             for t in temp:
-                
+                print('flag_rule_dict : ', flag_rule_dict)
+                print('flag_rule_dict.keys() : ', flag_rule_dict.keys())
                 if t in flag_rule_dict.keys():
                     value = flag_rule_dict[t]
-                    print('value', value)
+                
             for t in temp:
                 flag_rule_dict[t]=value
     return flag_rule_dict
