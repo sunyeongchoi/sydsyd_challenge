@@ -35,4 +35,3 @@ for i in range(n):
             queue.append((i, j, answer))
 answer = bfs(queue, arr)
 print(check(answer, arr))
-
