@@ -46,3 +46,19 @@ const inputResourceTableTitle = () => localeName('inputresource');
 ```
 
 - 이렇게 함수로 고치니 됐다.
+
+### error React Hook "useIntl" is called in function "localeName" which is neither a React function component or a custom React Hook function
+
+```jsx
+import { useIntl } from 'react-intl';
+
+export const localeName = (bcname: string) => {
+  const { formatMessage } = useIntl();
+  const kindName = `w.${bcname.toLowerCase()}`;
+  return formatMessage({ id: kindName });
+};
+```
+
+- 상황 : string을 return 하는 함수에서 useIntl() hook을 사용하였는데, commit을 하는 상황에서 오류가 났다.
+- 함수의 이름을 LocaleName이라고 바꿔주니 해결됐다.
+- [if you are going to use a hook inside of a hook custom hook, the name of the custom hook MUST start with "use" (lowercase).](https://dev.to/ranewallin/js-bites-react-hook-is-called-in-a-function-which-is-neither-a-react-function-or-sic-a-custom-react-hook-1g2c)
